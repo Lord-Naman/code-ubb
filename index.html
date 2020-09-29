@@ -1,0 +1,40 @@
+</head>
+
+<body>
+    <center>
+        <h1>IIEC_RISE</h1>
+        <b>Simple Web Api chatbot </b>
+        <br>
+        <br>
+        <div class="buttonIn">
+            <form action="http://192.168.1.2/cgi-bin/iiec.py">
+                <input type="text" name="x" id="speechToText" placeholder="Type or Speak Something" x-webkit-speech />
+                <button type="button" onclick="record()"><img
+                        src="https://www.flaticon.com/svg/static/icons/svg/60/60955.svg" style="width:20px;height:13px;"
+                        onclick="record()"></button>
+                <input type="submit">
+            </form>
+        </div>
+        <center>
+            <script>
+                function record() {
+                    var recognition = new webkitSpeechRecognition();
+                    recognition.lang = "en-IN";
+
+                    recognition.onresult = function (event) {
+                        // console.log(event);
+                        document.getElementById('speechToText').value = event.results[0][0].transcript;
+                    }
+                    recognition.start();
+
+                }
+                window.addEventListener('load', () => {
+                    const button = document.querySelector('#clear');
+                    button.addEventListener('click', () => {
+                        document.querySelector('#enter').value = "";
+                    });
+                }); 
+            </script>
+</body>
+
+</html>
