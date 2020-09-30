@@ -1,3 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive clear field button</title>
+    <style>
+        h1 {
+            color: green;
+        }
+
+        .buttonIn {
+            width: 300px;
+            position: relative;
+        }
+
+        input {
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            outline: none;
+            height: 30px;
+            border-radius: 5px;
+        }
+
+        button {
+            position: absolute;
+            top: 0;
+            border-radius: 5px;
+            right: 0px;
+            z-index: 2;
+            border: none;
+            top: 2px;
+            height: 30px;
+            cursor: pointer;
+            color: white;
+            background-color: #1e90ff;
+            transform: translateX(2px);
+        }
+    </style>
 </head>
 
 <body>
@@ -28,13 +69,32 @@
                     recognition.start();
 
                 }
+                speaks = [{"name": "Veena","lang": "en-US"}];
+
+				const msg = new SpeechSynthesisUtterance();
+				msg.volume = 1; // 0 to 1
+				msg.rate = 1; // 0.1 to 10
+				msg.pitch = 1.2; // 0 to 2
+				msg.text  = "hello there how are you Im El  Im a python program that can help you with various things on your system";
+
+
+				const voice = speaks[0]; //47
+				console.log(`Voice: ${voice.name} and Lang: ${voice.lang}`);
+				msg.voiceURI = voice.name;
+				msg.lang = voice.lang;
+
+
+				speechSynthesis.speak(msg);
+                
+                
                 window.addEventListener('load', () => {
                     const button = document.querySelector('#clear');
                     button.addEventListener('click', () => {
                         document.querySelector('#enter').value = "";
                     });
-                }); 
+                });
+                 
             </script>
 </body>
-
 </html>
+
